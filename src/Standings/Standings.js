@@ -3,6 +3,7 @@ import React, { useEffect, useState} from 'react';
 import StandingsTable from "./components/StandingsTable";
 import { getStandings } from "../Services/StandingsService";
 import StandingsHeader from "./components/StandingsHeader";
+import { Button, ButtonStyle } from "./styles/Standings.style";
 
 const Standings = () => {
 
@@ -13,7 +14,6 @@ const Standings = () => {
         console.log("fired");
         getStandings()
             .then(resStandings => {
-                console.log("resStandigns ", resStandings);
                 if (conference)
                 {
                     setStandings(resStandings["Campbell"].filter(e => e));
@@ -33,10 +33,13 @@ const Standings = () => {
             <Navbar />
             
             <StandingsHeader conference={conference} />
-
-            <button onClick={() => setConference(!conference)}>
-                Switch Conference
-            </button>
+            <hr />
+            <Button>
+                <ButtonStyle onClick={() => setConference(!conference)}>
+                    Switch Conference
+                </ButtonStyle>
+            </Button>
+            
             
             <StandingsTable standingsData={tableData}/>
         </>

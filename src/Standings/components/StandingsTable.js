@@ -1,6 +1,6 @@
 import { useSortBy, useTable } from "react-table";
 import { useMemo } from "react";
-import { Table, TableData, TableHead } from "../styles/Standings.style";
+import { Table, TableData, TableHead, TableDataGold, TableDataSilver, TableDataBronze } from "../styles/Standings.style";
 
 
 const StandingsTable = ({ standingsData }) => {
@@ -56,7 +56,20 @@ const StandingsTable = ({ standingsData }) => {
                     return (
                         <tr {...row.getRowProps()}>
                             {row.cells.map(cell => {
-                                return <TableData {...cell.getCellProps()}>{cell.render("Cell")}</TableData>;
+                                if (cell.row.values["teamName"] !== '')
+                                {
+                                    if (cell.row.index == 0)
+                                    {
+                                        return <TableDataGold {...cell.getCellProps()}>{cell.render("Cell")}</TableDataGold>;
+                                    } else if (cell.row.index == 1) {
+                                        return <TableDataSilver {...cell.getCellProps()}>{cell.render("Cell")}</TableDataSilver>;
+                                    } else if (cell.row.index == 2) {
+                                        return <TableDataBronze {...cell.getCellProps()}>{cell.render("Cell")}</TableDataBronze>;
+                                    } else {
+                                        return <TableData {...cell.getCellProps()}>{cell.render("Cell")}</TableData>;
+                                    }
+                                }
+                                
                             })}
                         </tr>
                     );

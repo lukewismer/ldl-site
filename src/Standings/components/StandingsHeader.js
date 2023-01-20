@@ -1,15 +1,16 @@
+import { Header } from "../styles/Standings.style";
 
 const StandingsHeader = ({conference}) => {
     if (conference)
     {
         return (
-            <h1>Campbell Conference</h1>
+            <Header>Campbell Conference</Header>
         )
     }
     else
     {
         return (
-            <h1>Deboer Conference</h1>
+            <Header>Deboer Conference</Header>
         )
     }
 }
