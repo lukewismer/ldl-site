@@ -2,6 +2,7 @@ import Navbar from "../Home/components/Navbar";
 import React, { useEffect, useState} from 'react';
 import { getSchedule } from "../Services/ScheduleService";
 import ScheduleTable from "./components/ScheduleTable";
+import { Header, WeekBtn, WeekDiv, DropdownMenu, DropdownItem } from "./styles/Schedule.style";
 
 const Schedule = () => {
 
@@ -25,13 +26,21 @@ const Schedule = () => {
             });
     }, [])
     
-    console.log(schedule[0]);
-    console.log(dates[0]);
+
+    // Need to receive which week it is somehow
 
     return (
         <>
             <Navbar />
-            <h1>Week 15</h1>
+            <Header>Week 11</Header>
+            <hr />
+            <WeekDiv>
+                <WeekBtn>Other Weeks</WeekBtn>
+                <DropdownMenu>
+                    <DropdownItem href="#">Line 1</DropdownItem>
+                    <DropdownItem href="#">Link 2</DropdownItem>
+                </DropdownMenu>
+            </WeekDiv>
             {dates.map((item, index) => {
                 return (
                     <ScheduleTable schedule={schedule[index]} date={dates[index]}></ScheduleTable>
